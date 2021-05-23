@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateLmasuksTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('lmasuks', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100);
+            $table->date('tanggal');
+            $table->string('jumlah');
+            $table->timestamps();
+
+            $table->foreign('name')
+            ->references('name')
+            ->on('products')
+            ->onUpdate('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('lmasuks');
+    }
+}
